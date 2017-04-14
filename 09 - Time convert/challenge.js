@@ -8,7 +8,4 @@ let minute = num%60;
 
 let time = hour +":"+ minute;
 
-
-
-
 console.log(time);
