@@ -7,6 +7,4 @@ str = str.sort();
 str = str.join("");
 
 
-
-
 console.log(str);
