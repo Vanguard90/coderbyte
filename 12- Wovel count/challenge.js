@@ -1,4 +1,4 @@
-let str = "bzz8*";
+let str = "Xiyuan";
 
 let pattern = /[a,e,i,o,u]/gi;
 

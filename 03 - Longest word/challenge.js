@@ -1,13 +1,15 @@
-let str = "a b c dee"
+let sen = "a b c dee 99999999"
 
-str = str.split(" ");
-str = str.sort( function(a,b) { return b.length - a.length});
-str = str.shift();
+sen = sen.match(/\b[a-z0-9]+/gi);
+
+sen = sen.sort(function(a,b) {if (b.length > a.length) {return 1;} else {return -1;}});
+
+sen = sen.shift();
 
 
-console.log(str);
+console.log(sen);
 
-//Not fully correct! There are cases where this is not working.
+//Now fully correct!!! :)
 
 /* %100 correct solution:
 
