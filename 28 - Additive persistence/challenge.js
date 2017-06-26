@@ -1,4 +1,4 @@
-let num = 2718;
+let num = 99999999999999999999991;
 
 if (num <= 9) {
 	console.log(0);
