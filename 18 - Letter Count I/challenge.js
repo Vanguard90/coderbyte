@@ -1,51 +1,51 @@
-//Brek sentence to words /\b[a-z]+/gi
 let str = "Hello apple pie";
 
-arr = str.split(" ");
+let wordArr = str.split(" ");
 
-let obj = {};
+let wordObjs = [];
 
-for (var i = 0; i < arr.length; i++) {
-	obj[i] = arr[i];
+wordArr.forEach( (arrItem, index) => {
+    wordObjs[index] = {};
+    arrItem.split("").forEach( childArrItem => {
+        if (wordObjs[index][childArrItem] === undefined) {
+            // Also can use Object.hasOwnProperty
+            wordObjs[index][childArrItem] = 1;
+            if (wordObjs[index].highest === undefined) {
+                wordObjs[index].highest = {
+                    key: childArrItem.toString(),
+                    value: 1,
+                    fullWord: arrItem
+                }
+            }
+        } else {
+            wordObjs[index][childArrItem] += 1;
+
+            if (wordObjs[index][childArrItem] > wordObjs[index].highest.value) {
+                wordObjs[index].highest = {
+                    key: childArrItem.toString(),
+                    value: wordObjs[index][childArrItem],
+                    fullWord: arrItem
+                }
+            }
+        }
+    });
+
+
+});
+
+
+let highestFinal;
+
+wordObjs.forEach( (item, index) => {
+    if (highestFinal === undefined) {
+        highestFinal = wordObjs[0].highest;
+    } else if (wordObjs[index].highest.value > highestFinal.value) {
+        highestFinal = wordObjs[index].highest;
+    }
+});
+
+if (highestFinal.value === 1 || highestFinal.value === 0) {
+    console.log(-1);
 }
 
-let pieces = [];
-
-for (var i = 0; i < arr.length; i++) {
-	pieces[i] = arr[i].split("");
-}
-
-console.log(pieces);
-
-let counts = {};
-
-
-for (var i = 0; i < pieces.length; i++) {
-	counts[i] = {};
-	for (var j = 0; j < pieces[i].length; j++) {
-		if (counts[i][pieces[i][j]] == undefined) {
-			counts[i][pieces[i][j]] = 1;	
-		} else if (counts[i][pieces[i][j]] =! undefined) {
-			counts[i][pieces[i][j]]++;
-		}
-	}
-	
-}
-let highest = [];
-
-for (var k = 0; k < counts.length; k++) {
-	for (deepCounter in counts[k]) {
-		if(counts[k][deepCounter] > counts[k][deepCounter]) {
-			highest[k] = counts[k][deepCounter];
-		} else {
-			highest[k] = counts[k][deepCounter];
-		}
-	}
-}
-
-
-//Made progress but still not correct!!!
-
-console.log(highest);
-
-console.log(counts);
+console.log(highestFinal.fullWord);
